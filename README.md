@@ -30,7 +30,7 @@ The ez_switch_lib library provides a unique caoablity in that it is possible to 
 This means that no use code is required to 'turn on/turn off' a linked output following a switch actuation.
 Such switches may also be processed normally via a 'switched' event.
 
-The linked output concenpt may also be used to trigger external interrupts following switch actuations.
+The linked output concenpt may also be used to trigger external interrupts following switch actuations. 
 
 A comprehensive User Guide, Crib Sheet and Quick Start Guide are also available, along with example sketches.
 
