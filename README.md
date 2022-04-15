@@ -4,26 +4,16 @@ A repository to file the ez_switch_lib library files for the Arduino Library Man
 
 # Overview
 The ez_switch_lib library provides support for reading single or multiple swicthes of types button (eg momentary) or toggle.
-Any nuber of switches of either or mixed types may be configured and wired in one of two/different wiring schemes.
+Any nuber of switches of either or mixed types may be configured and wired in one of two/three different wiring schemes.
+
+For both Arduino and ESP 32 boards switches may be configured as:
+pinMode(..,INPUT/circuit_C1) requiring an external 10k ohm resistor,
+pinMode(..,INPUT_PULLUP/circuit_21) requiring NO external resistor,
+
+and for ESP 32 only:
+pinMode(..,INPUT_PULLDOWN/circuit_C3) requiring NO external resistor.
 
 
-Board     PinMode         Comments
-Arduino   INPUT           circuit_C1 - wired with external 10k ohm resistor
-ESP 32    INPUT           circuit_C1 - wired with external 10k ohm resistor
-Arduino   INPUT_PULLUP    circuit_C2 - wired without any external resistor
-ESP 32    INPUT_PULLUP    circuit_C2 - wired without any external resistor
-ESP 32    INPUT_PULLDOWN  circuit_C3 - wired without any external resistor
-
-
-Note that INPUT_PULLDOWN/circuit_C3 is not a valid configuration choice for switches on Arduino.
-
-
-
-For both Arduino AND ESP 32 boards there are:
-  two wiring scheme choices - pinMode(..,INPUT) wired with an external 10k ohm pull down resistor and pinMode(..,INPUT_PULLUP) wired without any external resistor.
-For ESP 32 boards the choice of switch wiring schemes is as for Arduino boards but there is also a third choice of wiring, this being:
-  pinMode(..,INPUT_PULLDOWN) wired without any external resistor.
-  
 The ez_switch_lib library provides a software solution for switch debounce. Debounce may be set as required, otherwise it will default to 10 milliseconds.
 
 The ez_switch_lib library provides a unique caoablity in that it is possible to link any switch to another digital output pin such that when the switch is actuated the linked out will be flipped/inverted automatically.
