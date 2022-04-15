@@ -25,5 +25,7 @@ Such switches may also be processed normally via a 'switched' event.
 
 The linked output concept may also be used to trigger external interrupts following switch actuations. 
 
+The library is also capable of providing other features, for example, testing if a switch is in transition from one state to another, etc.
+
 A comprehensive User Guide, Crib Sheet and Quick Start Guide are also available, along with example sketches.
 
