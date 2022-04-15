@@ -19,11 +19,11 @@ and for ESP 32 only:
 
 The ez_switch_lib library provides a software solution for switch debounce. Debounce may be set as required, otherwise it will default to 10 milliseconds.
 
-The ez_switch_lib library provides a unique caoablity in that it is possible to link any switch to another digital output pin such that when the switch is actuated the linked out will be flipped/inverted automatically.
-This means that no use code is required to 'turn on/turn off' a linked output following a switch actuation.
+The ez_switch_lib library provides a unique capoablity in that it is possible to link any switch to another digital output pin such that when the switch is actuated the linked out will be flipped/inverted automatically.
+This means that no user code is required to 'turn on/turn off' a linked output following a switch actuation.
 Such switches may also be processed normally via a 'switched' event.
 
-The linked output concenpt may also be used to trigger external interrupts following switch actuations. 
+The linked output concept may also be used to trigger external interrupts following switch actuations. 
 
 A comprehensive User Guide, Crib Sheet and Quick Start Guide are also available, along with example sketches.
 
