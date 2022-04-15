@@ -7,7 +7,9 @@ The ez_switch_lib library provides support for reading single or multiple swicth
 Any nuber of switches of either or mixed types may be configured and wired in one of two/three different wiring schemes.
 
 For both Arduino and ESP 32 boards switches may be configured as:
+
 pinMode(..,INPUT/circuit_C1) requiring an external 10k ohm resistor,
+
 pinMode(..,INPUT_PULLUP/circuit_21) requiring NO external resistor,
 
 and for ESP 32 only:
