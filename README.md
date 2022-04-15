@@ -8,12 +8,13 @@ Any nuber of switches of either or mixed types may be configured and wired in on
 
 For both Arduino and ESP 32 boards switches may be configured as:
 
-pinMode(..,INPUT/circuit_C1) requiring an external 10k ohm resistor,
+* pinMode(..,INPUT/circuit_C1) requiring an external 10k ohm resistor,
 
-pinMode(..,INPUT_PULLUP/circuit_21) requiring NO external resistor,
+* pinMode(..,INPUT_PULLUP/circuit_21) requiring NO external resistor,
 
 and for ESP 32 only:
-pinMode(..,INPUT_PULLDOWN/circuit_C3) requiring NO external resistor.
+
+* pinMode(..,INPUT_PULLDOWN/circuit_C3) requiring NO external resistor.
 
 
 The ez_switch_lib library provides a software solution for switch debounce. Debounce may be set as required, otherwise it will default to 10 milliseconds.
