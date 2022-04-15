@@ -1,0 +1,57 @@
+# Arduino Switch Library for configuring different switch type wired
+# in common circuit schemes.
+#
+# Ron Bentley, Stafford (UK), March 2021, version 2.0
+#
+# This example and code is in the public domain and
+# may be used without restriction and without warranty.
+#
+
+# data and data structures
+Switches	KEYWORD1
+switches	KEYWORD2
+switch_configured	KEYWORD2
+switch_type	KEYWORD2
+switch_pin	KEYWORD2
+switch_circuit_type	KEYWORD2
+switch_pending	KEYWORD2
+switch_db_start	KEYWORD2
+switch_on_value	KEYWORD2
+switch_status	KEYWORD2
+switch_out_pin	KEYWORD2
+switch_out_pin_status	KEYWORD2
+last_switched_id	KEYWORD2
+
+# private variables
+_debounce	KEYWORD2
+_max_switches	KEYWORD2
+_num_entries	KEYWORD2
+
+# macro definitions
+switched	LITERAL1
+bad_params	LITERAL1
+add_failure	LITERAL1
+link_success	LITERAL1
+link_failure	LITERAL1
+on	LITERAL1
+configured	LITERAL1
+button_switch	LITERAL1
+toggle_switch	LITERAL1
+not_used	LITERAL1
+circuit_C1	LITERAL1
+circuit_C2	LITERAL1
+circuit_C3	LITERAL1
+INPUT_PULLDOWN	LITERAL1
+none_switched	LITERAL1
+
+
+# functions
+read_switch	KEYWORD2
+read_toggle_switch	KEYWORD2
+read_button_switch	KEYWORD2
+add_switch	KEYWORD2
+link_switch_to_output	KEYWORD2
+num_free_switch_slots	KEYWORD2
+set_debounce	KEYWORD2
+print_switch	KEYWORD2
+print_switches	KEYWORD2
