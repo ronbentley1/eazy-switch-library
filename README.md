@@ -1,36 +1,6 @@
-# eazy-switch-library for Arduino and ESP 32 Microcontrollers
-A repository to file the ez_switch_lib library files for the Arduino Library Manager.
+# eazy-switch-library, ez_switch_lib, for Arduino and ESP 32 Microcontrollers
 
-
-# Overview
-The ez_switch_lib library provides support for reading single or multiple swicthes of types button (eg momentary) or toggle.
-Any nuber of switches of either or mixed types may be configured and wired in one of two/three different wiring schemes.
-
-For both Arduino and ESP 32 boards switches may be configured as:
-
-* pinMode(..,INPUT/circuit_C1) requiring an external 10k ohm resistor,
-
-* pinMode(..,INPUT_PULLUP/circuit_21) requiring NO external resistor,
-
-and for ESP 32 only:
-
-* pinMode(..,INPUT_PULLDOWN/circuit_C3) requiring NO external resistor.
-
-
-The ez_switch_lib library provides a software solution for switch debounce. Debounce may be set as required, otherwise it will default to 10 milliseconds.
-
-The ez_switch_lib library provides a unique capoablity in that it is possible to link any switch to another digital output pin such that when the switch is actuated the linked out will be flipped/inverted automatically.
-This means that no user code is required to 'turn on/turn off' a linked output following a switch actuation.
-Such switches may also be processed normally via a 'switched' event.
-
-The linked output concept may also be used to trigger external interrupts following switch actuations. 
-
-The library is also capable of providing other features, for example, testing if a switch is in transition from one state to another, etc.
-
-A comprehensive User Guide, Crib Sheet and Quick Start Guide are also available, along with example sketches.
-
-# Arduino/ESP 32 ez_switch_lib
-Basic, easy (ez) to use but flexible switch library for Arduino and ESP 32 microcontrollers, supporting multiple switch and circuit schemes of different types.
+Basic, easy (ez) to use but flexible switch library for Arduino and ESP 32 microcontrollers, supporting multiple switchtypes and circuit wiring schemes.
 
 Read the User Guide for a comprehensive appreciation and understanding.
 
@@ -54,7 +24,7 @@ The following features are provided by the <ez_switch_lib> library:
 
 - dynamic memory allocation, depending on the number of switches you wish to incorporate in your project
 - multi-switch type capabilities
-- mixing of different switch wiring schemes for both Arduino and ESP 32 boards - switches may be configured as pinMode(..,INPUT/circuit_C1) requiring an external 10k ohm resistor or pinMode(..,INPUT_PULLUP/circuit_21) requiring NO external resistor; for ESP 32 only, pinMode(..,INPUT_PULLDOWN/circuit_C3) requiring NO external resistor.
+- mixing of different switch wiring schemes for both Arduino and ESP 32 boards - switches may be configured as pinMode(..,INPUT/circuit_C1) requiring an external 10k ohm resistor or pinMode(..,INPUT_PULLUP/circuit_21) requiring NO external resistor; for ESP 32 only, pinMode(..,INPUT_PULLDOWN/circuit_C3) requiring NO external resistor
 
 - dual switch circuit wiring scheme support, transparent to the software developer
 - support for both button and toggle style switches
@@ -68,10 +38,9 @@ The following features are provided by the <ez_switch_lib> library:
 - direct access to all switch control variables
 - support for **multiple switches linked to a single interrupt service routine (ISR)**, with switch type
   and circuit wiring scheme independence, plus full debounce handling of all switches 
-  (see Corollary section of User Guide for working example)
 - switch control status reporting via serial monitor
 - reserved library macro definitions for use by end user, supporting self documenting sketch code
-- a comprehensive User Guide
+- a comprehensive User Guide, Crib Sheet and Quick Strart Guide.
 
 The User Guide provides a comprehensive exposition of the scope and capabilities of the <ez_switch_lib> library, including working example sketches. For a full appreciation of the <ez_switch_lib> library capabilities download the User Guide from github.
 
