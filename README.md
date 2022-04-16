@@ -53,16 +53,9 @@ In a nutshell, <ez_switch_lib> provides a set of enhanced capabilities for readi
 The following features are provided by the <ez_switch_lib> library:
 
 - dynamic memory allocation, depending on the number of switches you wish to incorporate in your project
+- 
 - multi-switch type capabilities
-- mixing of different switch types:
-
-- For both Arduino and ESP 32 boards switches may be configured as:
-
-- pinMode(..,INPUT/circuit_C1) requiring an external 10k ohm resistor,
-
--pinMode(..,INPUT_PULLUP/circuit_21) requiring NO external resistor,
-
-- and for ESP 32 only - pinMode(..,INPUT_PULLDOWN/circuit_C3) requiring NO external resistor.
+- mixing of different switch wiring schemes for both Arduino and ESP 32 boards switches may be configured as pinMode(..,INPUT/circuit_C1) requiring an external 10k ohm resistor, or pinMode(..,INPUT_PULLUP/circuit_21) requiring NO external resistor, and for ESP 32 only pinMode(..,INPUT_PULLDOWN/circuit_C3) requiring NO external resistor.
 
 - dual switch circuit wiring scheme support, transparent to the software developer
 - support for both button and toggle style switches
