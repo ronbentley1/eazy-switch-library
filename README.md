@@ -44,4 +44,7 @@ The following features are provided by the <ez_switch_lib> library:
 
 The User Guide provides a comprehensive exposition of the scope and capabilities of the <ez_switch_lib> library, including working example sketches. For a full appreciation of the <ez_switch_lib> library capabilities download the User Guide from github.
 
+To see the Arduino Project Hub article follow this link.=: 
+https://create.arduino.cc/projecthub/ronbentley1/a-switch-library-for-arduino-esp-32-microcontrollers-dfbe40?ref=user&ref_id=1455180&offset=19
+
 <end>
