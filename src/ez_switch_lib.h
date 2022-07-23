@@ -20,7 +20,10 @@ class Switches
 #define button_switch         1      // differentiates switch type
 #define toggle_switch         2      // ditto
 
+#ifndef INPUT_PULLDOWN
 #define INPUT_PULLDOWN        9      // not valid for Arduino boards, but it is for ESP32 boards
+#endif
+
 #define circuit_C1        INPUT      // switch circuit requires an external pull down 10k ohm resistor
 #define circuit_C2  INPUT_PULLUP     // switch circuit requires no other components beyond the switch
 #define circuit_C3  INPUT_PULLDOWN   // switch circuit requires no other components beyond the switch
