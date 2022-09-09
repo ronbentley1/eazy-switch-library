@@ -33,7 +33,7 @@ bad_params	LITERAL1
 add_failure	LITERAL1
 link_success	LITERAL1
 link_failure	LITERAL1
-on	LITERAL1
+on	        LITERAL1
 configured	LITERAL1
 button_switch	LITERAL1
 toggle_switch	LITERAL1
@@ -53,5 +53,8 @@ add_switch	KEYWORD2
 link_switch_to_output	KEYWORD2
 num_free_switch_slots	KEYWORD2
 set_debounce	KEYWORD2
+reset_switch	KEYWORD2
+reset_switches	KEYWORD2
+button_is_pressed	KEYWORD2
 print_switch	KEYWORD2
 print_switches	KEYWORD2
