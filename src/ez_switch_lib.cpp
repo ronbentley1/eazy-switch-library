@@ -1,14 +1,14 @@
 // Arduino Switch Library for configuring different switch type wired
 // in common circuit schemes.
 //
-// Ron Bentley, Stafford (UK), March 2021, version 2.0
+// Ron Bentley, Stafford (UK), March 2021, updated Sept 2022, version 3.0
 //
 // This example and code is in the public domain and
 // may be used without restriction and without warranty.
 //
 
 #include <Arduino.h>
-#include <ez_switch_lib.h>
+#include <ez_switch_lib.h> // change "ez_switch_lib" to <ez_switch_lib> when deploying to libraries
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Set up switch cotrol structure and initialise internal variables.
@@ -149,11 +149,11 @@ int Switches::add_switch(byte sw_type, byte sw_pin, byte circ_type) {
   if (_num_entries < _max_switches) {
     // room to add another switch...initialise the switch's
     // data depending on type of switch and circuit
-    switches[_num_entries].switch_type    = sw_type;
-    switches[_num_entries].switch_pin     = sw_pin;
-    switches[_num_entries].switch_circuit_type   = circ_type;
-    switches[_num_entries].switch_pending = false;
-    switches[_num_entries].switch_db_start   = 0;
+    switches[_num_entries].switch_type         = sw_type;
+    switches[_num_entries].switch_pin          = sw_pin;
+    switches[_num_entries].switch_circuit_type = circ_type;
+    switches[_num_entries].switch_pending      = false;
+    switches[_num_entries].switch_db_start     = 0;
     // define what on means for this switch:
     if (circ_type != circuit_C2) {
       // circuit_C1 and circuit_C3 are used with pull down resistors
@@ -225,6 +225,84 @@ int Switches::num_free_switch_slots() {
 void Switches::set_debounce(int period) {
   if (period >= 0)  _debounce = period;
 }  // End set_debounce
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// % reset the given switch to its
+// % non-pending (non-transition) state
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+void Switches::reset_switch(uint8_t switch_id) {
+  if (switch_id < _num_entries - 1) {
+    switches[switch_id].switch_pending  = false;
+  }
+}
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// % reset all declared switches to
+// % their non-pending (non-transition) state
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+void Switches::reset_switches() {
+  for (uint8_t switch_id = 0; switch_id < _num_entries; switch_id++) {
+    switches[switch_id].switch_pending  = false;
+  }
+}
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// %    Note: this function applies to button
+// %             switches ONLY.
+// % If the specified switch id is a button
+// % switch, then the function will return
+// % true if the button switch is CURRENTLY
+// % being pressed, ie in transition, and false
+// % otherwise.
+// % Note: If the button has a linked output then this 
+// % will be automatically switched (toggled)
+// % if the 'process_link' parameter is true,
+// % otherwise, it will not be switched (toggled)
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+bool Switches::button_is_pressed(uint8_t switch_id, bool process_link) {
+  // check switch is declared
+  if (switch_id < _num_entries) {
+    // check if switch is a button switch
+    if (switches[switch_id].switch_type == button_switch) {
+      // all checks done, read the switch
+      if (process_link) {
+        // request is to process any lined output.
+        // only the read_switch function will process any linked output
+        read_switch(switch_id);
+      } else {
+        // request is NOT to process any linked output, so we need to use
+        // read_button_switch rather than read_switch, which ignores any
+        // linked output
+        read_button_switch(switch_id);
+      }
+      return switches[switch_id].switch_pending; // this will be either true if in trasition or false if not
+    }
+  }
+  return false;
+}
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// %    Note: this function applies to button
+// %             switches ONLY.
+// % If the specified switch id is a button
+// % switch, then the function will return
+// % true if the button switch is CURRENTLY
+// % being pressed, ie in transition, and false
+// % otherwise.
+// % Note that this function will NOT process
+// % any linked output associated with this
+// % switch. If this is required then use the
+// % overloaded version, thus:
+// % button_is_pressed(switch_id, true);
+// %
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+bool Switches::button_is_pressed(uint8_t switch_id) {
+  return button_is_pressed(switch_id, false);
+}
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Print given switch control data.

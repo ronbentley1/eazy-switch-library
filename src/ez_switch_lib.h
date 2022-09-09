@@ -1,7 +1,7 @@
 // Arduino Switch Library for configuring different switch type wired
 // in common circuit schemes.
 //
-// Ron Bentley, Stafford (UK), March 2021, version 2.0
+// Ron Bentley, Stafford (UK), March 2021, updated Sept 2022, version 3.0
 //
 // This example and code is in the public domain and
 // may be used without restriction and without warranty.
@@ -9,7 +9,6 @@
 
 #ifndef ez_switches_h
 #define ez_switches_h
-
 #include <Arduino.h>
 
 class Switches
@@ -26,7 +25,7 @@ class Switches
 
 #define circuit_C1        INPUT      // switch circuit requires an external pull down 10k ohm resistor
 #define circuit_C2  INPUT_PULLUP     // switch circuit requires no other components beyond the switch
-#define circuit_C3  INPUT_PULLDOWN   // switch circuit requires no other components beyond the switch
+#define circuit_C3  INPUT_PULLDOWN   // switch circuit requires no other components beyond the switch, only ESP 32
 
 #define switched           true      // signifies switch has been pressed/switch cycle complete
 #define on                 true      // used for toggle switch status
@@ -63,6 +62,10 @@ class Switches
     int  link_switch_to_output (byte switch_id, byte output_pin, bool HorL);
     int  num_free_switch_slots ();
     void set_debounce          (int period);
+    void reset_switch          (uint8_t switch_id);
+    void reset_switches        ();
+    bool button_is_pressed     (uint8_t switch_id, bool process_link);
+    bool button_is_pressed     (uint8_t switch_id);
     void print_switch          (byte sw);
     void print_switches        ();
 
