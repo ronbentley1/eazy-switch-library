@@ -1,20 +1,27 @@
 // Arduino Switch Library for configuring different switch type wired
 // in common circuit schemes.
 //
-// Ron Bentley, Stafford (UK), March 2021, updated Sept 2022, version 3.0
+// Ron Bentley, Stafford (UK), March 2021,
+// updates:
+//   Sept 2022, version 3.00
+//     addition of functions 'is_button_pressed' (overloaded) and
+//                           'reset_switch' and 'reset_switches'
+//   Sept 2022, version 3.01
+//     change of library variables to unsigned declarations, generally,
+//     eg byte to uint8_t, long unsigned int to uint32_t, etc
 //
 // This example and code is in the public domain and
 // may be used without restriction and without warranty.
 //
 
 #include <Arduino.h>
-#include <ez_switch_lib.h> // change "ez_switch_lib" to <ez_switch_lib> when deploying to libraries
+#include "ez_switch_lib.h" // change "ez_switch_lib" to <ez_switch_lib> when deploying to libraries
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // Set up switch cotrol structure and initialise internal variables.
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Switches::Switches(byte max_switches)
+Switches::Switches(uint8_t max_switches)
 {
   // Establish the switch control structure (switches) of the size required.
   //
@@ -39,7 +46,7 @@ Switches::Switches(byte max_switches)
 // has undergone a transition or not.
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-bool Switches::read_switch(byte sw) {
+bool Switches::read_switch(uint8_t sw) {
   bool sw_status;
   if (sw < 0 || sw >= _num_entries) return !switched; // out of range, slot 'sw' is not configured with a switch
   if (switches[sw].switch_type == button_switch) {
@@ -69,8 +76,8 @@ bool Switches::read_switch(byte sw) {
 // It will either have a status of 'on' or '!on' (ie off).
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-bool Switches::read_toggle_switch(byte sw) {
-  byte switch_pin_reading = digitalRead(switches[sw].switch_pin);  // test current state of toggle pin
+bool Switches::read_toggle_switch(uint8_t sw) {
+  uint8_t switch_pin_reading = digitalRead(switches[sw].switch_pin);  // test current state of toggle pin
   if (switches[sw].switch_circuit_type == circuit_C2) {
     // Need to invert HIGH/LOW if circuit design sets
     // pin HIGH representing switch in off state.
@@ -107,8 +114,8 @@ bool Switches::read_toggle_switch(byte sw) {
 // and incorporates debounce code.
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-bool Switches::read_button_switch(byte sw) {
-  byte switch_pin_reading = digitalRead(switches[sw].switch_pin);
+bool Switches::read_button_switch(uint8_t sw) {
+  uint8_t switch_pin_reading = digitalRead(switches[sw].switch_pin);
   if (switch_pin_reading == switches[sw].switch_on_value) {
     // Switch is pressed (ON), so start/restart debounce process
     switches[sw].switch_pending = true;
@@ -141,7 +148,7 @@ bool Switches::read_button_switch(byte sw) {
 //         not valid.
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-int Switches::add_switch(byte sw_type, byte sw_pin, byte circ_type) {
+int Switches::add_switch(uint8_t sw_type, uint8_t sw_pin, uint8_t circ_type) {
   if ((sw_type != button_switch && sw_type != toggle_switch) ||
       (circ_type != circuit_C1 &&
        circ_type != circuit_C2 &&
@@ -187,7 +194,7 @@ int Switches::add_switch(byte sw_type, byte sw_pin, byte circ_type) {
 // Link or delink the given switch to the given digital pin as an output
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-int Switches::link_switch_to_output(byte switch_id, byte output_pin, bool HorL) {
+int Switches::link_switch_to_output(uint8_t switch_id, uint8_t output_pin, bool HorL) {
   if (switch_id > _num_entries) {
     return link_failure; // no such switch
   }
@@ -222,7 +229,7 @@ int Switches::num_free_switch_slots() {
 // Set debounce period (milliseconds).
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-void Switches::set_debounce(int period) {
+void Switches::set_debounce(uint16_t period) {
   if (period >= 0)  _debounce = period;
 }  // End set_debounce
 
@@ -308,7 +315,7 @@ bool Switches::button_is_pressed(uint8_t switch_id) {
 // Print given switch control data.
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-void Switches::print_switch(byte sw) {
+void Switches::print_switch(uint8_t sw) {
   if (0 <= sw && sw < _num_entries ) {
     Serial.print(F("sw_id:   = "));
     Serial.println(sw);
@@ -365,7 +372,7 @@ void Switches::print_switch(byte sw) {
 
 void Switches::print_switches() {
   Serial.println(F("\nDeclared & configured switches:"));
-  for (byte sw = 0; sw < _num_entries; sw++) {
+  for (uint8_t sw = 0; sw < _num_entries; sw++) {
     print_switch(sw);
   }
 } // End print_switches
