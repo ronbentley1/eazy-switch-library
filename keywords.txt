@@ -1,8 +1,15 @@
 # Arduino Switch Library for configuring different switch type wired
 # in common circuit schemes.
 #
-# Ron Bentley, Stafford (UK), March 2021, version 2.0
-#
+# Ron Bentley, Stafford (UK), March 2021, 
+# updates:
+#   Sept 2022, version 3.00
+#     addition of functions 'is_button_pressed' (overloaded) and
+#                           'reset_switch' and 'reset_switches'
+#   Sept 2022, version 3.01
+#     change of library variables to unsigned declarations, generally,
+#     eg byte to uint8_t, long unsigned int to uint32_t, etc
+#         
 # This example and code is in the public domain and
 # may be used without restriction and without warranty.
 #
