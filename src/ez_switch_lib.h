@@ -77,9 +77,9 @@ class Switches
     void print_switches        ();
 
   private:
-    uint8_t _num_entries  = 0;  // used for adding switches to switch control structure/list
-    uint8_t _max_switches = 0;  // max switches user has initialise
-    int _debounce         = 10; // 10 millisecs if not specified by user code
+    uint8_t  _num_entries  = 0;  // used for adding switches to switch control structure/list
+    uint8_t  _max_switches = 0;  // max switches user has initialise
+    uint16_t _debounce    = 10; // 10 millisecs if not specified by user code
 };
 
 #endif
